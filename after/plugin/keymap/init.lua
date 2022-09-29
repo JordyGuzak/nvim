@@ -15,6 +15,8 @@ nnoremap("<leader>f", function()
 end)
 
 nnoremap("<C-s>", ":w<CR>")
+inoremap("<C-s>", "<ESC>:w<CR>")
+vnoremap("<C-c>", "\"+y")
 
 -- Tree
 nnoremap("<C-n>", ":NvimTreeToggle<cr>")
