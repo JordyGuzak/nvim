@@ -20,6 +20,7 @@ return require("packer").startup(function()
     use("hrsh7th/cmp-nvim-lsp")
     use("hrsh7th/cmp-buffer")
     use("hrsh7th/nvim-cmp")
+    use("kabouzeid/nvim-lspinstall")
     use("tzachar/cmp-tabnine", { run = "./install.sh" })
     use("onsails/lspkind-nvim")
     use("nvim-lua/lsp_extensions.nvim")
@@ -30,6 +31,8 @@ return require("packer").startup(function()
     use("mbbill/undotree")
     use "kyazdani42/nvim-web-devicons"
     use("terrortylor/nvim-comment")
+    use("folke/zen-mode.nvim")
+    use("mattn/emmet-vim")
 
     use {
         "windwp/nvim-autopairs",

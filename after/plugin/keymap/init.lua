@@ -28,6 +28,9 @@ nnoremap("<C-p>", "<cmd>lua require('telescope.builtin').find_files()<cr>")
 nnoremap("<A-c>", "<cmd>BufferClose<cr>")
 nnoremap("<A-p>", "<cmd>BufferPick<cr>")
 
+-- Zen Mode
+nnoremap("<C-F11>", "<cmd>ZenMode<cr>")
+
 nnoremap("<A-1>", "<cmd>BufferGoto 1<cr>")
 nnoremap("<A-2>", "<cmd>BufferGoto 2<cr>")
 nnoremap("<A-3>", "<cmd>BufferGoto 3<cr>")
