@@ -3,11 +3,6 @@ local nnoremap = Remap.nnoremap
 local vnoremap = Remap.vnoremap
 local inoremap = Remap.inoremap
 local xnoremap = Remap.xnoremap
-local nmap = Remap.nmaplocal Remap = require("jordyguzak.keymap")
-local nnoremap = Remap.nnoremap
-local vnoremap = Remap.vnoremap
-local inoremap = Remap.inoremap
-local xnoremap = Remap.xnoremap
 local nmap = Remap.nmap
 
 nnoremap("<leader>f", function()
@@ -19,7 +14,8 @@ inoremap("<C-s>", "<ESC>:w<CR>")
 vnoremap("<C-c>", "\"+y")
 
 -- Tree
-nnoremap("<C-n>", ":NvimTreeToggle<cr>")
+nnoremap("<C-n>", "<cmd>NvimTreeToggle<cr>")
+nnoremap("<A-n>", "<cmd>NvimTreeFindFile<cr>")
 
 -- Telescope
 nnoremap("<C-p>", "<cmd>lua require('telescope.builtin').find_files()<cr>")

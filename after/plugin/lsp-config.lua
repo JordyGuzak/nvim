@@ -39,9 +39,7 @@ local lspconfig = require('lspconfig')
 local configs = require'lspconfig.configs'
 
 -- Set up completion using nvim_cmp with LSP source
-local capabilities = require('cmp_nvim_lsp').update_capabilities(
-  vim.lsp.protocol.make_client_capabilities()
-)
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 local omnisharp_bin = "C:/Users/jordy.guzak/AppData/Local/omnisharp-vim/omnisharp-roslyn/OmniSharp.exe"
@@ -61,6 +59,8 @@ lspconfig.tsserver.setup {
     on_attach = on_attach,
     capabilities = capabilities
 }
+
+lspconfig.astro.setup {}
 
 lspconfig.diagnosticls.setup {
   on_attach = on_attach,
