@@ -28,6 +28,6 @@ vim.opt.isfname:append("@-@")
 vim.opt.cmdheight = 1
 vim.opt.updatetime = 50
 vim.opt.shortmess:append("c")
-vim.opt.colorcolumn = "80"
+vim.opt.colorcolumn = "100"
 
 vim.g.mapleader = " "

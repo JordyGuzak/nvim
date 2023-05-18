@@ -1,8 +1,4 @@
-require('mason').setup()
-require('mason-lspconfig').setup({
-  ensure_installed = { "lua_ls", "tsserver", "jsonls", "html" }
-})
-vim.opt.completeopt = { 'menu', 'menuone', 'noselect' }
+-- vim.opt.completeopt = { 'menu', 'menuone', 'noselect' }
 
 -- Mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
@@ -42,15 +38,75 @@ local lspconfig = require('lspconfig')
 local configs = require'lspconfig.configs'
 
 -- Set up completion using nvim_cmp with LSP source
-local capabilities = require('cmp_nvim_lsp').default_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
-lspconfig.tsserver.setup {
-    on_attach = on_attach,
-    capabilities = capabilities
+-- MASON
+require('mason').setup()
+local mason_lspconfig = require('mason-lspconfig')
+local servers = {
+	eslint = {
+		codeAction = {
+			disableRuleComment = {
+				enable = true,
+				location = "separateLine",
+			},
+			showDocumentation = {
+				enable = true,
+			},
+		},
+		codeActionOnSave = {
+			enable = false,
+			mode = "all",
+		},
+		format = false,
+		nodePath = "",
+		onIgnoredFiles = "off",
+		packageManager = "npm",
+		quiet = false,
+		rulesCustomizations = {},
+		run = "onType",
+		useESLintClass = false,
+		validate = "on",
+		workingDirectory = {
+			mode = "location",
+		},
+	},
+	cssls = {},
+	html = {},
+	jsonls = {},
+  tsserver = {},
+	lua_ls = {
+		Lua = {
+			workspace = { checkThirdParty = false },
+			telemetry = { enable = false },
+			diagnostics = {
+				globals = { "vim" },
+			},
+		},
+	},
 }
 
-lspconfig.lua_ls.setup {
-  on_attach = on_attach,
-  capabilities = capabilities
-}
+mason_lspconfig.setup({
+  ensure_installed = vim.tbl_keys(servers),
+})
+
+mason_lspconfig.setup_handlers({
+	function(server_name)
+		require("lspconfig")[server_name].setup({
+			capabilities = capabilities,
+			on_attach = on_attach,
+			settings = servers[server_name],
+		})
+	end,
+})
+
+-- lspconfig.tsserver.setup {
+--     on_attach = on_attach,
+--     capabilities = capabilities
+-- }
+--
+-- lspconfig.lua_ls.setup {
+--   on_attach = on_attach,
+--   capabilities = capabilities
+-- }
