@@ -1,18 +1,21 @@
 require("nvim-tree").setup({
-    view = {
-        adaptive_size = true,
-        mappings = {
-          list = {
-            { key = "u", action = "dir_up" },
-          },
-        },
+  update_focused_file = {
+    enable = true,
+  },
+  view = {
+    adaptive_size = true,
+    mappings = {
+      list = {
+        { key = "u", action = "dir_up" },
       },
-      renderer = {
-        group_empty = true,
-      },
-      filters = {
-        dotfiles = true,
-      },
+    },
+  },
+  renderer = {
+    group_empty = true,
+  },
+  filters = {
+    dotfiles = true,
+  },
 })
 
 vim.keymap.set("n", "<C-n>" ,"<cmd>NvimTreeToggle<cr>")

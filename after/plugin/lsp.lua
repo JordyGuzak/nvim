@@ -76,6 +76,8 @@ local servers = {
 	html = {},
 	jsonls = {},
   tsserver = {},
+  jdtls = {},
+  gopls = {},
 	lua_ls = {
 		Lua = {
 			workspace = { checkThirdParty = false },
@@ -100,13 +102,3 @@ mason_lspconfig.setup_handlers({
 		})
 	end,
 })
-
--- lspconfig.tsserver.setup {
---     on_attach = on_attach,
---     capabilities = capabilities
--- }
---
--- lspconfig.lua_ls.setup {
---   on_attach = on_attach,
---   capabilities = capabilities
--- }
