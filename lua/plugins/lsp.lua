@@ -18,6 +18,9 @@ return {
     -- Snippets
     'L3MON4D3/LuaSnip',
     'rafamadriz/friendly-snippets',
+
+    -- Telescope
+    'nvim-telescope/telescope.nvim',
   },
   config = function()
     local lsp = require("lsp-zero")
@@ -28,7 +31,6 @@ return {
       'tsserver',
       'eslint',
       'tailwindcss',
-      'remark_ls'
     })
 
     -- Fix Undefined global 'vim'
@@ -71,18 +73,21 @@ return {
 
     lsp.on_attach(function(client, bufnr)
       local opts = { buffer = bufnr, remap = false }
+      local builtin = require('telescope.builtin')
 
-      vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
-      vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
-      vim.keymap.set("n", "<leader>ws", function() vim.lsp.buf.workspace_symbol() end, opts)
       vim.keymap.set("n", "<leader>vd", function() vim.diagnostic.open_float() end, opts)
-      vim.keymap.set("n", "[d", function() vim.diagnostic.goto_next() end, opts)
-      vim.keymap.set("n", "]d", function() vim.diagnostic.goto_prev() end, opts)
+      vim.keymap.set('n', 'gd', function() builtin.lsp_definitions() end, opts)
+      vim.keymap.set('n', 'gr', function() builtin.lsp_references() end, opts)
+      vim.keymap.set('n', 'gI', function() builtin.lsp_implementations() end, opts)
+      vim.keymap.set('n', '<leader>D', function() builtin.lsp_type_definitions() end, opts)
+      vim.keymap.set('n', '<leader>ds', function() builtin.lsp_document_symbols() end, opts)
+      vim.keymap.set('n', '<leader>ws', function() builtin.lsp_dynamic_workspace_symbols() end, opts)
+      vim.keymap.set('n', '<leader>rn', function() vim.lsp.buf.rename() end, opts)
       vim.keymap.set("n", "<leader>ca", function() vim.lsp.buf.code_action() end, opts)
-      vim.keymap.set("n", "<leader>fr", function() vim.lsp.buf.references() end, opts)
-      vim.keymap.set("n", "<leader>rn", function() vim.lsp.buf.rename() end, opts)
       vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
       vim.keymap.set("n", "<leader>f", function() vim.lsp.buf.format() end, opts)
+      vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
+      vim.keymap.set("n", "gD", function() vim.lsp.buf.declaration() end, opts)
     end)
 
     lsp.setup()
