@@ -74,5 +74,12 @@ return {
       }
     end, { desc = '[S]earch [/] in Open Files' })
 
+
+    keymap.set('n', '<leader>sp', function()
+      builtin.live_grep {
+        prompt_title = 'Live Grep in Open Files',
+      }
+    end, { desc = '[S]earch [/] in Open Files' })
+
   end,
 }
