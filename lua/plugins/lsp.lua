@@ -32,6 +32,7 @@ return {
 			"eslint",
 			"tailwindcss",
 			"html",
+			"jdtls",
 		})
 
 		-- Fix Undefined global 'vim'
@@ -114,6 +115,9 @@ return {
 				vim.lsp.buf.declaration()
 			end, opts)
 		end)
+
+		-- setup java before lsp
+		require("java").setup()
 
 		lsp.setup()
 
