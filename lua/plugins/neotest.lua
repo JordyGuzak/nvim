@@ -55,6 +55,10 @@ return {
 				require("neotest").output.open({ enter = true })
 			end, { desc = "Test Output" })
 
+			vim.keymap.set("n", "<leader>tp", function()
+				require("neotest").output_panel.toggle({ enter = true })
+			end, { desc = "Test Output panel" })
+
 			vim.keymap.set("n", "<leader>ts", function()
 				require("neotest").summary.toggle()
 			end, { desc = "Test Summary" })
