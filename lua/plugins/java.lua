@@ -16,7 +16,7 @@ return {
 			java.build.clean_workspace()
 		end)
 
-		keymap.set("n", "<leader>jq", function()
+		keymap.set("n", "<leader>js", function()
 			java.runner.built_in.stop_app()
 		end)
 
