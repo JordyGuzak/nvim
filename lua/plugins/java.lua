@@ -4,6 +4,10 @@ return {
 		local keymap = vim.keymap
 		local java = require("java")
 
+		java.setup()
+
+		vim.lsp.enable("jdtls")
+
 		keymap.set("n", "<leader>jr", function()
 			java.runner.built_in.run_app({})
 		end)
