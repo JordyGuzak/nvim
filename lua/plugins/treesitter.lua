@@ -1,14 +1,16 @@
 return {
-  'nvim-treesitter/nvim-treesitter',
-  build = ':TSUpdate',
-  config = function()
-    ---@diagnostic disable-next-line: missing-fields
-    require('nvim-treesitter.configs').setup {
-      ensure_installed = { 'bash', 'c', 'html', 'lua', 'markdown', 'vim', 'vimdoc' },
-      -- Autoinstall languages that are not installed
-      auto_install = true,
-      highlight = { enable = true },
-      indent = { enable = true },
-    }
-  end
+	"nvim-treesitter/nvim-treesitter",
+	lazy = false,
+	build = ":TSUpdate",
+	config = function()
+		vim.api.nvim_create_autocmd("FileType", {
+			pattern = { "<filetype>" },
+			callback = function()
+				-- Enable treesitter highlighting and disable regex syntax
+				vim.treesitter.start()
+				-- Enable treesitter-based indentation
+				vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+			end,
+		})
+	end,
 }
